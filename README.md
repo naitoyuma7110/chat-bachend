@@ -2,7 +2,7 @@
 
 ## 概要
 
-- Java Springboot のチュートリアル
+- Java Springboot の練習
 - オニオンアーキテクチャ
 - テスト駆動開発(TDD)
 
