@@ -30,12 +30,14 @@ public class ChannelController {
   public List<Channel> findAll() {
     // TODO: 全てのチャンネル情報を取得し返す
 
-    List<Channel> myList = new ArrayList<>();
-    myList.add(new Channel(1, "hello"));
-    myList.add(new Channel(2, "Hi"));
-    myList.add(new Channel(3, "sample"));
-    Collections.shuffle(myList);
-    return myList;
+    // List<Channel> myList = new ArrayList<>();
+    // myList.add(new Channel(1, "hello"));
+    // myList.add(new Channel(2, "Hi"));
+    // myList.add(new Channel(3, "sample"));
+    // Collections.shuffle(myList);
+    // return myList;
+    return Collections.emptyList();
+
   }
 
 }
