@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.naito.techpit.chat.chatbachend.app.domain.channels.model.Channel;
+import com.naito.techpit.chat.chatbachend.domain.channels.model.Channel;
 
 @RestController
 @RequestMapping("/channels")

@@ -1,4 +1,4 @@
-package com.naito.techpit.chat.chatbachend.app.domain.channels.model;
+package com.naito.techpit.chat.chatbachend.domain.channels.model;
 
 import lombok.Data;
 
