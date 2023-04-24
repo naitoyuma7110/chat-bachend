@@ -1,4 +1,4 @@
-package com.naito.techpit.chat.chatbachend.app.controller;
+package com.naito.techpit.chat.chatbachend.application.controller;
 
 import java.util.Optional;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,8 +13,8 @@ public class HelloController {
 
   @GetMapping("/hello")
   public Hello hello(@RequestParam("name") Optional<String> name) {
-    //  Optional:null許容
-    //  orElse:optionalインスタンスがnullでない場合はその値を返す
+    // Optional:null許容
+    // orElse:optionalインスタンスがnullでない場合はその値を返す
     String resName = name.orElse("world!");
     return new Hello("Hello, " + resName);
   }
