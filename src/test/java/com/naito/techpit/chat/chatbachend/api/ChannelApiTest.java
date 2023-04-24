@@ -53,7 +53,8 @@ public class ChannelApiTest {
 
   }
 
-  // no-record(事前DBレコードなし)：idのautoIncrementのテストのため、idなし/あり両方をテスト
+  // no-record(事前DBレコードなし),またidの自動伝番のテストのため、idなし/あり両方をテスト
+  // Arguments.arguments(String requestBody, String expectedBody, String dbPath)
   private static Stream<Arguments> createTestProvider() {
     return Stream.of(Arguments.arguments("""
         {

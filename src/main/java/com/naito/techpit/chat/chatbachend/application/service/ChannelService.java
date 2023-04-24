@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.naito.techpit.chat.chatbachend.domain.channels.model.Channel;
 import com.naito.techpit.chat.chatbachend.domain.channels.service.ChannelDomainService;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 @Service

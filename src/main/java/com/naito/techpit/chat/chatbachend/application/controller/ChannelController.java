@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/channel")
+@RequestMapping("/channels")
 @CrossOrigin
 public class ChannelController {
   private final ChannelService channelService;

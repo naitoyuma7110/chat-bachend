@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.naito.techpit.chat.chatbachend.infrastructure.channels">
+<mapper namespace="com.naito.techpit.chat.chatbachend.infrastructure.channels.ChannelMapper">
   <insert id="insert" parameterType="com.naito.techpit.chat.chatbachend.domain.channels.model.Channel">
       INSERT INTO channels
         (id, name)
