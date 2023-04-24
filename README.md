@@ -1,4 +1,4 @@
-# 【Springboot】チャットアプリ API
+# チャットアプリAPI(Springboot)
 
 ## 概要
 
