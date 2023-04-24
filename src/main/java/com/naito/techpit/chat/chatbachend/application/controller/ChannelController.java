@@ -1,4 +1,4 @@
-package com.naito.techpit.chat.chatbachend.app.controller;
+package com.naito.techpit.chat.chatbachend.application.controller;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,12 +9,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.naito.techpit.chat.chatbachend.application.service.ChannelService;
 import com.naito.techpit.chat.chatbachend.domain.channels.model.Channel;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 @RestController
-@RequestMapping("/channels")
+@RequestMapping("/channel")
 @CrossOrigin
 public class ChannelController {
+  private final ChannelService channelService;
 
   @PostMapping()
   public Channel create(@RequestBody Channel channel) {
@@ -23,7 +27,7 @@ public class ChannelController {
      * この場合channelはChannelクラスのフィールドにリクエスト内容をセットされたインスタンスとなる
      */
     // TODO:チャンネルを新規作成
-    return channel;
+    return channelService.create(channel);
   }
 
   @GetMapping()
@@ -36,7 +40,7 @@ public class ChannelController {
     // myList.add(new Channel(3, "sample"));
     // Collections.shuffle(myList);
     // return myList;
-    return Collections.emptyList();
+    return channelService.findAll();
 
   }
 
