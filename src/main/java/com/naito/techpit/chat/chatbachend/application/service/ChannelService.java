@@ -15,12 +15,10 @@ public class ChannelService {
   private final ChannelDomainService channelDomainService;
 
   public Channel create(Channel channel) {
-    // TODO: Serviceを作成するまでは暫定的にリクエスト内容をそのまま返却する。
     return channelDomainService.create(channel);
   }
 
   public List<Channel> findAll() {
-    // TODO: Serviceを作成するまでは暫定的に空のリストを返却する。
     return channelDomainService.findAll();
   }
 
