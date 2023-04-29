@@ -26,7 +26,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@DisplayName("ChannelAPIへのリクエストとレスポンス、DB操作に対するテスト")
+@DisplayName("ChannelAPIへのリクエストとレスポンス、DB処理に対するテスト")
 public class ChannelApiTest {
 
   @Autowired
@@ -90,6 +90,34 @@ public class ChannelApiTest {
 
   }
 
+  @Test
+  public void updateFailedTest() throws Exception {
+
+    IDatabaseTester databaseTester = new DataSourceDatabaseTester(dataSource);
+    var givenUrl = this.getClass().getResource("/channels/update/success/given/");
+    databaseTester.setDataSet(new CsvURLDataSet(givenUrl));
+    databaseTester.onSetup();
+
+    mockMvc.perform(MockMvcRequestBuilders.put("/channels/" + 1).content("""
+        {
+          "name" : "updateしたレコード"
+        }
+        """).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON_UTF8))
+        .andExpect(MockMvcResultMatchers.status().isOk())
+        .andExpect((result) -> JSONAssert.assertEquals("""
+            {
+              "id" : 1,
+              "name" : "updateしたレコード"
+            }
+            """, result.getResponse().getContentAsString(), false));
+
+    var actualDataSet = databaseTester.getConnection().createDataSet();
+    var actualChannelsTable = actualDataSet.getTable("channels");
+    var expectedUri = this.getClass().getResource("/channels/update/success/expected/");
+    var expectedDataSet = new CsvURLDataSet(expectedUri);
+    var expectedChannelsTable = expectedDataSet.getTable("channels");
+    Assertion.assertEquals(expectedChannelsTable, actualChannelsTable);
+  }
 
   // no-record(事前DBレコードなし),またidの自動伝番のテストのため、idなし/あり両方をテスト
   // Arguments.arguments(String requestBody, String expectedBody, String dbPath)
