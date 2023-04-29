@@ -63,18 +63,30 @@ public class ChannelApiTest {
   @Test
   public void updateTest() throws Exception {
 
+    IDatabaseTester databaseTester = new DataSourceDatabaseTester(dataSource);
+    var givenUrl = this.getClass().getResource("/channels/update/success/given/");
+    databaseTester.setDataSet(new CsvURLDataSet(givenUrl));
+    databaseTester.onSetup();
+
     mockMvc.perform(MockMvcRequestBuilders.put("/channels/" + 1).content("""
         {
-          "name" : "Hello"
+          "name" : "updateしたレコード"
         }
         """).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON_UTF8))
         .andExpect(MockMvcResultMatchers.status().isOk())
         .andExpect((result) -> JSONAssert.assertEquals("""
             {
               "id" : 1,
-              "name" : "Hello"
+              "name" : "updateしたレコード"
             }
             """, result.getResponse().getContentAsString(), false));
+
+    var actualDataSet = databaseTester.getConnection().createDataSet();
+    var actualChannelsTable = actualDataSet.getTable("channels");
+    var expectedUri = this.getClass().getResource("/channels/update/success/expected/");
+    var expectedDataSet = new CsvURLDataSet(expectedUri);
+    var expectedChannelsTable = expectedDataSet.getTable("channels");
+    Assertion.assertEquals(expectedChannelsTable, actualChannelsTable);
 
   }
 
