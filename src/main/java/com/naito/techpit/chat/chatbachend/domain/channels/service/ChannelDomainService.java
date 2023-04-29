@@ -37,4 +37,12 @@ public class ChannelDomainService {
   public List<Channel> findAll() {
     return Collections.emptyList();
   }
+
+  public Channel update(Channel channel) {
+    int updatedRows = channelRepository.update(channel);
+    if (updatedRows == 0) {
+      throw new RuntimeException("このidのレコードは見つからなかったよ" + channel.getId());
+    }
+    return channel;
+  }
 }

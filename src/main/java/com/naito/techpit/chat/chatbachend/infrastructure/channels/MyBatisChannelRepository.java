@@ -27,4 +27,9 @@ public class MyBatisChannelRepository implements ChannelRepository {
     return channelMapper.getMaxId();
   }
 
+  @Override
+  public int update(Channel channel) {
+    return channelMapper.update(channel);
+  }
+
 }

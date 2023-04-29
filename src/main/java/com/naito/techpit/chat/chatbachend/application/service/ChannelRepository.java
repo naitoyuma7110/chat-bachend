@@ -10,4 +10,6 @@ public interface ChannelRepository {
   List<Channel> findAll();
 
   Optional<Integer> getMaxId();
+
+  int update(Channel channel);
 }

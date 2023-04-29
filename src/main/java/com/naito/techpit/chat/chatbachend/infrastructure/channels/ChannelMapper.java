@@ -12,4 +12,6 @@ public interface ChannelMapper {
   List<Channel> findAll();
 
   Optional<Integer> getMaxId();
+
+  int update(Channel channel);
 }
