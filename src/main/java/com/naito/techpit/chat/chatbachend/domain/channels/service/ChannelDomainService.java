@@ -13,13 +13,8 @@ import lombok.RequiredArgsConstructor;
 public class ChannelDomainService {
   private final ChannelRepository channelRepository;
 
+  // idの自動伝番を行いDB保存する
   public Channel create(Channel channel) {
-    /*
-     * UIからidを受け取らない仕様のためChannelモデルにはnameフィールドのみ値がある
-     * 
-     * 処理内容：DB情報を取得しChannelモデルに最新のidをセットしDB登録する
-     */
-
     // Optional:null許容の型, Optional.of(1)はOptional型に1を含む(null)ではない値
     // var currentMaxId = Optional.of(1);
     var currentMaxId = channelRepository.getMaxId();
@@ -35,7 +30,7 @@ public class ChannelDomainService {
   }
 
   public List<Channel> findAll() {
-    return Collections.emptyList();
+    return channelRepository.findAll();
   }
 
   public Channel update(Channel channel) {

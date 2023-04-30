@@ -35,6 +35,40 @@ public class ChannelApiTest {
   @Autowired
   private DataSource dataSource;
 
+  @Test
+  public void createTest() throws Exception {
+    IDatabaseTester databaseTester = new DataSourceDatabaseTester(dataSource);
+    var givenUrl = this.getClass().getResource("/channels/findAll/given/");
+    databaseTester.setDataSet(new CsvURLDataSet(givenUrl));
+    databaseTester.onSetup();
+
+    var expectedBody = """
+        [
+          {
+            "id": 1,
+            "name": "findAllのテスト"
+          },
+          {
+            "id": 2,
+            "name": "2つ目のチャンネル"
+          },
+                  {
+            "id": 3,
+            "name": "全件所得用データ"
+          }
+        ]
+          """;
+
+    // Postリクエストの作成
+    mockMvc
+        .perform(MockMvcRequestBuilders.get("/channels").contentType(MediaType.APPLICATION_JSON)
+            .accept(MediaType.APPLICATION_JSON_UTF8))
+        .andExpect(MockMvcResultMatchers.status().isOk()).andExpect((result) -> JSONAssert
+            .assertEquals(expectedBody, result.getResponse().getContentAsString(), false));
+
+
+  }
+
   @ParameterizedTest
   @MethodSource("createTestProvider")
   public void createTest(String requestBody, String expectedBody, String dbPath) throws Exception {
