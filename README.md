@@ -1,6 +1,6 @@
 # Jave(Springboot)でテスト駆動開発/チャットアプリAPI
 
-分かりやすい！(^^)
+分かりやすい！(^^)  
 参考：https://www.techpit.jp/courses/232/curriculums/235/sections/1527/parts/6072
 
 ## 概要
